@@ -468,7 +468,7 @@ const tripMiddleware = (store) => (next) => (action) => {
       // Endpoint add new suggestion to trip
       axios.delete(`${API_URL}/api/v0/users/${user}/trips/${id}/activities/${activityId}/delete`)
         .then(() => {
-          store.dispatch(removeActivity(id));
+          store.dispatch(removeActivity(activityId));
           store.dispatch(toastSuccess('Activité supprimée'));
         })
         .then(() => {
@@ -525,7 +525,6 @@ const tripMiddleware = (store) => (next) => (action) => {
               participant.users[0].id === user));
 
             store.dispatch(saveTrip(response.data, isCreator, userDisponibilities));
-            store.dispatch(loading(false));
           }
         })
         .catch((error) => {
@@ -548,7 +547,7 @@ const tripMiddleware = (store) => (next) => (action) => {
       // Endpoint add delete suggestion to trip
       axios.delete(`${API_URL}/api/v0/users/${user}/trips/${id}/suggestions/${suggestionId}`)
         .then(() => {
-          store.dispatch(removeSuggestion(id));
+          store.dispatch(removeSuggestion(suggestionId));
           store.dispatch(toastSuccess('Suggestion supprimée'));
         })
         .catch((error) => {
