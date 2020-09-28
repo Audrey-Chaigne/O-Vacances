@@ -1,0 +1,19 @@
+@import 'src/styles/vars';
+
+.home-visitor {
+  .cta-container {
+    background-color: $greyColorLighter;
+    border-radius: 0.5rem;
+    padding: 4rem;
+    .button-home-signin {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+#fonctionnalites {
+  padding-top: 2rem;
+  height: 100%;
+  width: 100%;
+}
