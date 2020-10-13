@@ -150,7 +150,7 @@ class UserController extends AbstractController
             $form = $this->createForm(UploadType::class, $user);
 
             // recuperation
-            $avatar = $request->files->get('file');
+            $avatar = $request->files->get('file'); 
             $form->submit($avatar);
             
             if ($form->isValid()) {

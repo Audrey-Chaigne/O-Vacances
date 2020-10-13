@@ -43,12 +43,11 @@ class TripController extends AbstractController
      */
     public function new(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, ValidatorInterface $validator, UserRepository $userRepository, $id)
     {
-        $user = $userRepository->find($id);
-        $trip = new Trip;
+        $user = $userRepository->find($id); 
+        $trip = new Trip; 
         // On extrait de la requête le json reçu
 
         $jsonText = $request->get('document');
-
         $image = $request->files->get('file');
 
         try {
@@ -177,7 +176,7 @@ class TripController extends AbstractController
             } 
         }
 
-        // si l'utilisateur fait parti des participant au voyage
+        // si l'utilisateur fait parti des participants au voyage
         if($participant >= 1){
             $trip = $tripRepository->findWithAllData($id);
             // On demande à Doctrine le voyage

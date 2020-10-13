@@ -25,7 +25,7 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $jsonText = $request->getContent();
 
-        $jsonArray = json_decode($jsonText, true);
+        $jsonArray = json_decode($jsonText, true); 
 
         $form->submit($jsonArray);
         
