@@ -49,10 +49,12 @@ import {
 import { checkIfCreator } from 'src/utils';
 import currentUser from 'src/utils/getCurrentUser';
 
+// const dans laquelle ou met les requetes
 const tripMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_TRIPS: {
       const user = currentUser();
+      // on passe par le store on appelle une action (dans les containers)
       store.dispatch(loading(true));
       // Endpoint fetch Trips list from user
       axios.get(`${API_URL}/api/v0/users/${user}/trips`)

@@ -3,6 +3,7 @@ import { deleteActivity, checkActivity } from 'src/actions/trip';
 
 import Activities from 'src/components/Activities';
 
+// 
 const mapStateToProps = (state) => ({
   activities: state.trip.trip.activities,
   activityId: state.trip.activityId,
