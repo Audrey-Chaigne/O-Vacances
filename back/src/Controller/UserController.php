@@ -29,52 +29,7 @@ class UserController extends AbstractController
         // Parce qu'on a précisé le normalizer, on peut normaliser selon un groupe
         $normalizedUsers = $serializer->normalize($users, null, ['groups' => 'apiV0_list']);
 
-
-        return $this->json($normalizedUsers);
-        
-        
-    }
-
-     /**
-     * @Route("/api/v0/users/login", name="api_v0_user_new", methods="GET")
-     */
-    public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder, ObjectNormalizer $normalizer): Response
-    {
-        
-        $user = $this->getUser();
-
-        $form = $this->createForm(UserType::class, $user);
-        $jsonText = $request->getContent();
-        
-        $jsonArray = json_decode($jsonText, true);
-
-        $form->submit($jsonArray);
-        
-  
-
-        if ($form->isValid()) {
-            // On a besoin d'hasher le mot de passe avant de le stocker en base de données
-            // On récupère donc le mot de passe dans $user
-            $password = $user->getPassword();
-            // On va hasher le mot de passe
-            $encodedPassword = $passwordEncoder->encodePassword($user, $password);
-            // Puis on replace le mot de passe hashé dans $user
-            $user->setPassword($encodedPassword);
-            
-
-            // On reprend le fil ordinaire des choses, en persistant et flush $user
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            $serializer = new Serializer([$normalizer]);
-
-            $normalizerUser = $serializer->normalize($user, null, ['groups'=> 'apiV0_list']);
-           
-            return $this->json($normalizerUser, 201);
-        }
-        
-        return $this->json((string) $form->getErrors(true, false), 400);
+        return $this->json($normalizedUsers);        
     }
 
     /**

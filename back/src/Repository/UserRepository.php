@@ -43,7 +43,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         // je souhaite sécuriser le parametre $id
         $builder->where("user.id = :userId");
         // je precise au builder quelle valeur "injecter" dans le parametre :userId
-        // Cette methode sécurise le contenu de la variable $id (echapment de car spéciaux ...)
+        // Cette methode sécurise le contenu de la variable $id (echapement de caracteres spéciaux ...)
         $builder->setParameter("userId", $id);
 
         // Je demande a doctrine de faire la jointure avec la relation ->trip

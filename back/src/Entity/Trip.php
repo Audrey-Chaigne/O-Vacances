@@ -31,11 +31,13 @@ class Trip
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank
+     * @Assert\Length(max=64)
+     * @Assert\Regex("/^\w+/")
+     * @Assert\Type("string")
      * @Groups("apiV0_dispoByTrip")
      * @Groups("apiV0_dispoByUser")
      * @Groups("apiV0-dispo")
-     * @Assert\NotBlank
-     * @Assert\Length(max=64)
      * @Groups("apiV0_trip")
      * @Groups("apiV0_tripByUser")
      * @Groups("apiV0_list")
@@ -48,6 +50,8 @@ class Trip
     
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Regex("/^\w+/")
+     * @Assert\Type("string")
      * @Groups("apiV0_list")
      * @Groups("apiV0_trip")
      * @Groups("apiV0_tripByUser")
@@ -58,6 +62,7 @@ class Trip
 
     /**  
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date
      * @Groups("apiV0_trip")
      * @Groups("apiV0_tripByUser")
      * @Groups("apiV0_activity")
@@ -66,6 +71,7 @@ class Trip
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date
      * @Groups("apiV0_trip")
      * @Groups("apiV0_tripByUser")
      * @Groups("apiV0_activity")
@@ -75,6 +81,7 @@ class Trip
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(max=255)
+     * @Assert\Regex("/^\w+/")
      * @Groups("apiV0_trip")
      * @Groups("apiV0_tripByUser")
      * @Groups("apiV0_activity")
@@ -126,6 +133,7 @@ class Trip
 
     /**
      * @ORM\Column(type="string", length=64, nullable=true)
+     * @Assert\Regex("/^\w+/")
      * @Groups("apiV0_trip")
      */
     private $password;
@@ -141,21 +149,7 @@ class Trip
         $this->suggestion = new ArrayCollection();
     }
 
-    // /**
-    //  * @Groups("apiV0_trip")
-    //  * je créé une fonction custom qui va parcourir mes entites2 et j'en ressort ce que j'en souhaite
-    //  * ci dessous un exemple possible mais tu es libre sur le retour 
-    //  * Note: groupe n'est pas uniquement applicable sur les propriété ;) 
-    //  */
-    // public function getUsersDetails(){
-    //     $tableauAretourner = [];
-            
-    //     foreach ($this->users as $user) {
-    //         $tableauAretourner[] = $user->getEmail();
-    //     };
-
-    //     return implode(',', $tableauAretourner);
-    // }
+    
 
     public function getId(): ?int
     {

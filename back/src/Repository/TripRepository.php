@@ -88,10 +88,10 @@ class TripRepository extends ServiceEntityRepository
         $builder->addSelect('user');
         
 
-        // on recupère la requete construite
+        // on recupère la requête construite
         $query = $builder->getQuery();
 
-        // je demande a doctrine d'éxecuter le requete et de me renvoyer les resultats
+        // je demande a doctrine d'executer le requête et de me renvoyer les résultats
         return $query->getOneOrNullResult();
         
     }
