@@ -35,10 +35,8 @@ class UserController extends AbstractController
     /**
      * @Route("api/v0/users/{id}/edit", name="api_user_edit", methods={"PATCH"})
      */
-    public function edit(UserPasswordEncoderInterface $passwordEncoder, Request $request, User $user, UserRepository $userRepository, $id, ObjectNormalizer $normalizer): Response
-    {
-        $user = $userRepository->find($id);
-     
+    public function edit(UserPasswordEncoderInterface $passwordEncoder, Request $request, User $user, ObjectNormalizer $normalizer): Response
+    {             
         $oldPassword = $user->getPassword();      
         
         if (!empty($user)) {

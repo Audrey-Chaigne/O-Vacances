@@ -15,7 +15,7 @@ class UserTest extends WebTestCase
      * 
      * @return \Symfony\Bundle\FrameworkBundle\Client
      */
-    protected function createAuthenticatedClient($email = 'test1@gmail.com', $password = 'testPassword')
+    protected function createAuthenticatedClient($email = 'test@gmail.com', $password = 'testPassword')
     {
         $client = static::createClient();
         $client->request(
@@ -70,25 +70,25 @@ class UserTest extends WebTestCase
 
     }
 
-    public function testUploadAvatar()
-    {
+    // public function testUploadAvatar()
+    // {
        
-        $client = $this->createAuthenticatedClient();
+    //     $client = $this->createAuthenticatedClient();
 
-        $photo = new UploadedFile(
-            'public/uploads/Cecile.png',
-            'Cecile.png',
-            'image/png',
-            null
-        );
+    //     $photo = new UploadedFile(
+    //         'public/uploads/Cecile.png',
+    //         'Cecile.png',
+    //         'image/png',
+    //         null
+    //     );
 
-        $client->request(
-            'PUT', 
-            '/api/v0/users/13/upload',
-            [],
-            ['file'=>$photo],
-        );
+    //     $client->request(
+    //         'PUT', 
+    //         '/api/v0/users/13/upload',
+    //         [],
+    //         ['file'=>$photo],
+    //     );
 
-        $this->assertEquals(201, $client->getResponse()->getStatusCode());
-    }
+    //     $this->assertEquals(201, $client->getResponse()->getStatusCode());
+    // }
 }

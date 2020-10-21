@@ -58,34 +58,35 @@ class TripControllerTest extends WebTestCase
         
     }
 
-    // public function testCreateTrip()
-    // {
-    //     $client = $this->createAuthenticatedClient();
 
-    //     $photo = new UploadedFile(
-    //         'public/images/autres.jpg',
-    //         'autres.jpg',
-    //         'image/jpeg',
-    //         null
-    //     );
+/*     public function testCreateTrip()
+    {
+        $client = $this->createAuthenticatedClient();
 
-    //     $client->request(
-    //         'POST',
-    //         '/api/v0/users/1/trips',
-    //         [],
-    //         ['image'=> $photo],
-    //         ['CONTENT_TYPE'=>'multipart/formdata'],
-    //         '{
-    //             "title": "La fete à la maison",
-    //             "description": "faire la fete tout en week end pour décompresser !",
-    //             "startDate": "2020-07-30",
-    //             "endDate": "2020-08-31",
-    //             "password": "fete"
-    //         }'
+        $photo = new UploadedFile(
+            'public/images/autres.jpg',
+            'autres.jpg',
+            'image/jpeg',
+            null
+        );
 
-    //     );
+        $client->request(
+            'POST',
+            '/api/v0/users/1/trips',
+            [],
+            ['image'=> $photo],
+            ['CONTENT_TYPE'=>'multipart/form-data'],
+            '{
+                "title": "La fete à la maison",
+                "description": "faire la fete tout en week end pour décompresser !",
+                "startDate": "2020-07-30",
+                "endDate": "2020-08-31",
+                "password": "fete"
+            }'
 
-    //     $this->assertEquals(201, $client->getResponse()->getStatusCode());
-    // }
+        );
 
+        $this->assertEquals(201, $client->getResponse()->getStatusCode());
+    }
+ */
 }
