@@ -52,8 +52,8 @@ class TripRepository extends ServiceEntityRepository
         $builder = $this->createQueryBuilder('trip');
         // je souhaite sécuriser le parametre $id
         $builder->where("trip.id = :id");
-        // je precise au builder quelle valeur "injecter" dans le parametre :animeId
-        // Cette methode sécurise le contenu de la variable $id (echapment de car spéciaux ...)
+        // je precise au builder quelle valeur "injecter" dans le parametre :id
+        // Cette methode sécurise le contenu de la variable $id (echapement de caractères spéciaux ...)
         $builder->setParameter("id", $id);
 
         // Je demande a doctrine de faire la jointure avec la relation ->creator
@@ -66,25 +66,24 @@ class TripRepository extends ServiceEntityRepository
         // je demande a doctrine d'alimenter les objets de type user dans mon objet Trip
         $builder->addSelect('user');
        
-        // Je demande a doctrine de faire la jointure avec la relation activity
+        // Je demande a doctrine de faire la jointure avec la relation ->activity
         $builder->leftJoin('trip.activities', 'activity');
         // je demande a doctrine d'alimenter les objets de type activity dans mon objet Trip
         $builder->addSelect('activity');
 
-        // Je demande a doctrine de faire la jointure avec la relation suggestion
+        // Je demande a doctrine de faire la jointure avec la relation ->suggestion
         $builder->leftJoin('trip.suggestion', 'suggestion');
         // je demande a doctrine d'alimenter les objets de type suggestion dans mon objet Trip
         $builder->addSelect('suggestion');
-
 
         // Je demande a doctrine de faire la jointure avec la relation ->disponibility
         $builder->leftJoin('trip.disponibility', 'disponibility');
         // je demande a doctrine d'alimenter les objets de type Disponibility dans mon objet Trip
         $builder->addSelect('disponibility');
 
-        // Je demande a doctrine de faire la jointure avec la relation ->users
+        // Je demande a doctrine de faire la jointure avec la relation ->users disponibility
         $builder->leftJoin('disponibility.users', 'user');
-        // je demande a doctrine d'alimenter les objets de type users dans mon objet Trip
+        // je demande a doctrine d'alimenter les objets de type user dans mon objet Trip
         $builder->addSelect('user');
         
 

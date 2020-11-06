@@ -94,7 +94,7 @@ class UserController extends AbstractController
     public function uploadAvatar(UserPasswordEncoderInterface $passwordEncoder, Request $request, User $user, UserRepository $userRepository, $id, ObjectNormalizer $normalizer): Response
     {
         $user = $userRepository->find($id);
-  /*       $oldAvatar = $user->getAvatar();
+        /*       $oldAvatar = $user->getAvatar();
         dd($oldAvatar); */
         
         
