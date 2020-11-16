@@ -195,7 +195,7 @@ class TripController extends AbstractController
     {
        // On demande à Doctrine le voyage
        $trip = $tripRepository->find($id);
-        
+      dd($request);  
 
         // je récupère l'id du créateur et celui de la personne qui fait l'action
         $user = $userRepository->find($idUser);
@@ -212,10 +212,10 @@ class TripController extends AbstractController
                 $jsonText = $request->get('document');
                 $image = $request->files->get('file');
 
-/*                 $trip->setImage(
+                /* $trip->setImage(
                     new File($this->getParameter('images_directory').'/'.$trip->getImage())
-                );
- */               
+                );*/
+                
                 try {
                     // on crée une nouvelle entité Trip avec le serializer
                     $newTrip = $serializer->deserialize($jsonText, Trip::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $trip]);
@@ -307,7 +307,6 @@ class TripController extends AbstractController
      */
     public function delete(Request $request, EntityManagerInterface $em, UserRepository $userRepository, TripRepository $tripRepository, $idUser, $id)
     {
-        //$trip = $tripRepository->find($id);
         $user = $userRepository->findAllTripsByUser($idUser);
         $trip = $tripRepository->find($id);
         

@@ -18,14 +18,14 @@ class Trip
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("apiV0_activity")
+     * @Groups("apiV0-dispo")
      * @Groups("apiV0_dispoByTrip")
      * @Groups("apiV0_dispoByUser")
-     * @Groups("apiV0-dispo")
-     * @Groups("apiV0_trip")
-     * @Groups("apiV0_tripByUser")
      * @Groups("apiV0_list")
      * @Groups("apiV0_Suggestion")
-     * @Groups("apiV0_activity")
+     * @Groups("apiV0_trip")
+     * @Groups("apiV0_tripByUser")
      */
     private $id;
 
@@ -35,15 +35,15 @@ class Trip
      * @Assert\Length(max=64)
      * @Assert\Regex("/^\w+/")
      * @Assert\Type("string")
+     * @Groups("apiV0_activity")
+     * @Groups("apiV0-dispo")
      * @Groups("apiV0_dispoByTrip")
      * @Groups("apiV0_dispoByUser")
-     * @Groups("apiV0-dispo")
-     * @Groups("apiV0_trip")
-     * @Groups("apiV0_tripByUser")
      * @Groups("apiV0_list")
      * @Groups("apiV0_Suggestion")
+     * @Groups("apiV0_trip")
+     * @Groups("apiV0_tripByUser")
      * @Groups("apiV0_user")
-     * @Groups("apiV0_activity")
      */
     private $title;
 
@@ -52,10 +52,10 @@ class Trip
      * @ORM\Column(type="text", nullable=true)
      * @Assert\Regex("/^\w+/")
      * @Assert\Type("string")
+     * @Groups("apiV0_activity")
      * @Groups("apiV0_list")
      * @Groups("apiV0_trip")
      * @Groups("apiV0_tripByUser")
-     * @Groups("apiV0_activity")
      *
      */
     private $description;
@@ -63,18 +63,18 @@ class Trip
     /**  
      * @ORM\Column(type="date", nullable=true)
      * @Assert\Date
+     * @Groups("apiV0_activity")
      * @Groups("apiV0_trip")
      * @Groups("apiV0_tripByUser")
-     * @Groups("apiV0_activity")
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      * @Assert\Date
+     * @Groups("apiV0_activity")
      * @Groups("apiV0_trip")
      * @Groups("apiV0_tripByUser")
-     * @Groups("apiV0_activity")
      */
     private $endDate;
 
@@ -82,18 +82,18 @@ class Trip
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(max=255)
      * @Assert\Regex("/^\w+/")
+     * @Groups("apiV0_activity")
      * @Groups("apiV0_trip")
      * @Groups("apiV0_tripByUser")
-     * @Groups("apiV0_activity")
      */
     private $location;
 
     /**
      * @ORM\Column(type="string", length=128, nullable=true)
      * @Assert\Length(max=128)
+     * @Groups("apiV0_activity")
      * @Groups("apiV0_trip")
      * @Groups("apiV0_tripByUser")
-     * @Groups("apiV0_activity")
      */
     private $image;
 
@@ -112,8 +112,8 @@ class Trip
 
     /**
      * @ORM\OneToMany(targetEntity=Disponibility::class, mappedBy="trip", cascade={"remove"})
-     * @Groups("apiV0_trip")
      * @Groups("apiV0_dispoByTrip")
+     * @Groups("apiV0_trip")
      */
     private $disponibility;
 
