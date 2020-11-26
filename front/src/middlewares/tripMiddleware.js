@@ -277,7 +277,7 @@ const tripMiddleware = (store) => (next) => (action) => {
       const user = currentUser();
 
       store.dispatch(loading(true));
-      // Endpoint add new suggestion to trip
+      // Endpoint add new activity to trip
       axios.post(`${API_URL}/api/v0/trips/${id}/activities`, {
         // props,
         title: activityTitle,
@@ -314,14 +314,14 @@ const tripMiddleware = (store) => (next) => (action) => {
         activityId,
       } = store.getState().trip;
 
-      // console.log(
-      //   activityTitle,
-      //   activityDescription,
-      //   activityStartDate,
-      //   activityEndDate,
-      //   activityCategory,
-      //   activityId,
-      // );
+      console.log(
+        activityTitle,
+        activityDescription,
+        activityStartDate,
+        activityEndDate,
+        activityCategory,
+        activityId,
+      );
 
       const { id } = store.getState().trip.trip;
       const user = currentUser();

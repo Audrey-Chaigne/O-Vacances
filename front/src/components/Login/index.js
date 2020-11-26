@@ -61,7 +61,7 @@ const Login = ({
             </form>
             <div>
               <div className="login-layout">
-                <p>J'ai oublié mon mot de passe</p>
+                {/* <p>J'ai oublié mon mot de passe</p> */}
                 <hr />
                 <p>
                   Pas encore de compte ? <Link to="/signin">Inscription</Link>

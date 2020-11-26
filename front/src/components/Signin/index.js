@@ -53,14 +53,17 @@ const Signin = ({
             onChange={changeField}
             value={email}
             required
+            pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$"
           />
           <Field
             name="password"
             type="password"
             placeholder="Mot de passe"
+            note="Il doit contenir entre 8 et 24 caractères, au moins 1 majuscule, 1 minuscule et 1 caractère spécial (#@%*.-)"
             onChange={changeField}
             value={password}
             required
+            pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9_#@%\*\.\-]{8,24}$"
           />
           {error && (
           <p className="error-message">{error}</p>
