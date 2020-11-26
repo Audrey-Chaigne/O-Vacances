@@ -30,7 +30,7 @@ const Field = ({
         className="field-label"
       >
         {placeholder} <br/>
-        <span>{ note}</span> 
+        <span>{note}</span>
       </label>
       <input
         // React - state
