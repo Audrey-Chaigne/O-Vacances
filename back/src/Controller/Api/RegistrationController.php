@@ -26,12 +26,12 @@ class RegistrationController extends AbstractController
         $jsonText = $request->getContent();
 
         $jsonArray = json_decode($jsonText, true); 
-
+dump($jsonArray);
         $form->submit($jsonArray);
         
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            $user->setRoles(['ROLE_USER']);
+            $user->setRoles(['ROLE_USER']);dump($user);
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,

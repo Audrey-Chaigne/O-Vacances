@@ -66,6 +66,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Assert\Regex("/^\w+/")
      * @Groups("apiV0_trip")
      * @Groups("apiV0_dispoByTrip")
      * @Groups("apiV0_dispoByUser")
@@ -80,6 +81,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Assert\Regex("/^\w+/")
      * @Groups("apiV0_trip")
      * @Groups("apiV0_dispoByTrip")
      * @Groups("apiV0_dispoByUser")
