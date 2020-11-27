@@ -11,8 +11,13 @@ use App\Repository\UserRepository;
 use App\Entity\User;
 use App\Form\UploadType;
 use App\Form\UserType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Serializer\Exception\NotEncodableValueException;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class UserController extends AbstractController
 {
@@ -35,57 +40,54 @@ class UserController extends AbstractController
     /**
      * @Route("api/v0/users/{id}/edit", name="api_user_edit", methods={"PATCH"})
      */
-    public function edit(UserPasswordEncoderInterface $passwordEncoder, Request $request, User $user, ObjectNormalizer $normalizer): Response
+    public function edit(UserPasswordEncoderInterface $passwordEncoder, Request $request, User $user, ObjectNormalizer $normalizer, UserRepository $userRepository, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em): Response
     {             
-        $oldPassword = $user->getPassword();      
-        
+        $oldPassword = $user->getPassword();  
+          
         if (!empty($user)) {
-            $form = $this->createForm(UserType::class, $user);
-
+           
             // On extrait de la requête le json reçu
             $jsonText = $request->getContent();
-   
-            // On transforme ce json en array
-            $jsonArray = json_decode($jsonText, true);
-        
-            // on récupére la valeur du champ password
-            $newPassword = $jsonArray['password'];
 
-            // s'il est vide, alors on lui remet l'ancien password
-            if (empty($newPassword)) {
-                $jsonArray['password'] = $oldPassword;
-            } else {
-                // sinon, on lui hash le nouveau password et on met le password hashé dans le champs "password" pour l'enregistrer.
-                $encodedPassword = $passwordEncoder->encodePassword($user, $newPassword);
-                $jsonArray['password'] = $encodedPassword;
-            }
+            try {
+                $newUser = $serializer->deserialize($jsonText, User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);
+                $errors = $validator->validate($newUser);
+                $newPassword = $newUser->getPassword();
+                if (!empty($newPassword)) {
+                    $encodedPassword = $passwordEncoder->encodePassword($user, $newPassword);
+                    $newUser -> setPassword($encodedPassword);
+                } else {
+                    $newUser -> setPassword($oldPassword);
+                }
 
-            $form->submit($jsonArray);
-          
-            // On vérifie si le formulaire est valide, toutes les données reçues sont bonnes
-            if ($form->isValid()) {
-                $user->setRoles(["ROLE_USER"]);
-                // Si c'est valide, on persiste et on flushe
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($user);
+                if(count($errors) > 0) {
+                    return $this->json($errors, 400);
+                }
                 $em->flush();
+                return $this->json($newUser, 201, [], ['groups' => 'apiV0_user']);
+
+            } catch (NotEncodableValueException $e) {
+                return $this->json([
+                    'status' => 400,
+                    'message'=>$e->getMessage()
+                ], 400);
+            }
+                
 
                 // On retourne une 201 avec l'objet qu'on vient de créer
                 // On instancie un serializer en lui précisant un normalizer adapté aux objets PHP
                 $serializer = new Serializer([$normalizer]);
                 // Parce qu'on a précisé le normalizer, on peut normaliser selon un groupe
-                $normalizedUser = $serializer->normalize($user, null, ['groups' => 'apiV0_list']);
+                $normalizedUser = $serializer->normalize($user, null, ['groups' => 'apiV0_user']);
                 return $this->json($normalizedUser, 201);
-            }
-     
-            return $this->json((string) $form->getErrors(true, false), 400);
-
         } else {
             return $this->json([
                 'status' => 400,
-                'message'=>"Vous ne pouvez pas effectuer cette action"
+                'message'=>"Cet utilisateur n'existe pas"
             ], 400);
         }
+
+        
     }
 
      /**
@@ -105,11 +107,11 @@ class UserController extends AbstractController
             // recuperation
             $avatar = $request->files->get('file'); 
             $form->submit($avatar);
-            
+           
             if ($form->isValid()) {
                 // On génère un nouveau nom de fichier
                 $fichier = '/uploads/'.md5(uniqid()).'.'.$avatar->guessExtension();
-            
+          
             
                 // On copie le fichier dans le dossier uploads
                 $avatar->move(

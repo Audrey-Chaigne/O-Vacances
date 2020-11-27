@@ -293,7 +293,7 @@ class User implements UserInterface
         return $this;
     }
     /**
-     * @return Collection|Suggestion[]
+     * @return Collection|Disponibility[]
      */
     public function getDisponibility(): Collection
     {

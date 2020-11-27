@@ -25,6 +25,7 @@ class UploadType extends AbstractType
         
         ->add('avatar', FileType::class,[
             'label' => false,
+            'mapped' => false,
             'constraints' => [
                 new File([
                     'maxSize' => '1024k',
@@ -37,7 +38,15 @@ class UploadType extends AbstractType
                     ],
                     'mimeTypesMessage' => 'Please upload a valid JPEG document',
                 ])
-            ],
+            ], 
+        ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => User::class,
+            'csrf_protection' =>false,
         ]);
     }
 }

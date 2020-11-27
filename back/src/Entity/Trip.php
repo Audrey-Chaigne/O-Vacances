@@ -62,7 +62,6 @@ class Trip
 
     /**  
      * @ORM\Column(type="date", nullable=true)
-     * @Assert\Date
      * @Groups("apiV0_activity")
      * @Groups("apiV0_trip")
      * @Groups("apiV0_tripByUser")
@@ -71,7 +70,6 @@ class Trip
 
     /**
      * @ORM\Column(type="date", nullable=true)
-     * @Assert\Date
      * @Groups("apiV0_activity")
      * @Groups("apiV0_trip")
      * @Groups("apiV0_tripByUser")
