@@ -49,7 +49,7 @@ import {
 import { checkIfCreator } from 'src/utils';
 import currentUser from 'src/utils/getCurrentUser';
 
-// const dans laquelle ou met les requetes
+// const dans laquelle on met les requetes
 const tripMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_TRIPS: {
@@ -314,7 +314,7 @@ const tripMiddleware = (store) => (next) => (action) => {
         activityId,
       } = store.getState().trip;
 
-      console.log(
+/*       console.log(
         activityTitle,
         activityDescription,
         activityStartDate,
@@ -322,7 +322,7 @@ const tripMiddleware = (store) => (next) => (action) => {
         activityCategory,
         activityId,
       );
-
+ */
       const { id } = store.getState().trip.trip;
       const user = currentUser();
       // Endpoint add new suggestion to trip
@@ -410,7 +410,7 @@ const tripMiddleware = (store) => (next) => (action) => {
       formData.append('document', json);
 
       const config = {
-        method: 'patch',
+        // method: 'patch',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -423,7 +423,7 @@ const tripMiddleware = (store) => (next) => (action) => {
         formData,
         config)
         .then((response) => {
-          // console.log(response);
+          console.log(response);
 
           store.dispatch(saveTripEdit(response.data));
           store.dispatch(toastSuccess('Modifications effectuées'));
