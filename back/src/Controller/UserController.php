@@ -103,15 +103,18 @@ class UserController extends AbstractController
         
         if (!empty($user)) {
             $form = $this->createForm(UploadType::class, $user);
-
+            $form->handleRequest($request);
             // recuperation
-            $avatar = $request->files->get('file'); 
-            $form->submit($avatar);
-           
+            // $avatar = $request->files->get('file'); 
+                         
+            $form->submit($request);
+     
             if ($form->isValid()) {
+
+                $avatar = $form->get('file')->getData();
+
                 // On génère un nouveau nom de fichier
-                $fichier = '/uploads/'.md5(uniqid()).'.'.$avatar->guessExtension();
-          
+                $fichier = '/uploads/'.md5(uniqid()).'.'.$avatar->guessExtension();     
             
                 // On copie le fichier dans le dossier uploads
                 $avatar->move(
@@ -128,9 +131,13 @@ class UserController extends AbstractController
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
                 $em->flush();
+                return $this->json($fichier, 201);
              }
-          
-            return $this->json($fichier, 201);
+             return $this->json([
+                'status' => 400,
+                'message'=>"formulaire invalide"
+            ], 400);
+            
             
         } else {
             return $this->json([
