@@ -13,6 +13,7 @@ const Field = ({
   placeholder,
   onChange,
   required,
+  note,
 }) => {
   const handleChange = (evt) => {
     onChange(evt.target.value, name);
@@ -26,7 +27,8 @@ const Field = ({
         htmlFor={inputId}
         className="field-label"
       >
-        {placeholder}
+        {placeholder} <br/>
+        <span>{note}</span>
       </label>
       <input
         // React - state
@@ -51,6 +53,7 @@ Field.propTypes = {
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
+  note: PropTypes.string,
 };
 
 // Valeurs par défaut pour les props
@@ -58,6 +61,7 @@ Field.defaultProps = {
   value: '',
   type: 'text',
   required: false,
+  note: '',
 };
 
 // == Export
