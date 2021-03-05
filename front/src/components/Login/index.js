@@ -46,6 +46,7 @@ const Login = ({
                 name="password"
                 type="password"
                 placeholder="Mot de passe"
+                note="8 à 24 caractères, au moins 1 majuscule, 1 minuscule et 1 caractère spécial (#@%*.-)"
                 onChange={changeField}
                 value={password}
                 required

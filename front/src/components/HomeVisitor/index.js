@@ -11,7 +11,7 @@ import './homeVisitor.scss';
 const HomeVisitor = () => (
   <main className="home-visitor">
     <Helmet>
-      <title>Planifier de somptueux voyages</title>
+      <title>O'Vacances - Planifier de somptueux voyages</title>
       <meta name="description" content="Homepage visiteur montrant les fonctionnalités de l'application" />
     </Helmet>
     <div className="connection-container" />
