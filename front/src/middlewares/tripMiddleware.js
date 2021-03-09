@@ -49,10 +49,12 @@ import {
 import { checkIfCreator } from 'src/utils';
 import currentUser from 'src/utils/getCurrentUser';
 
+// const dans laquelle on met les requetes
 const tripMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case FETCH_TRIPS: {
       const user = currentUser();
+      // on passe par le store on appelle une action (dans les containers)
       store.dispatch(loading(true));
       // Endpoint fetch Trips list from user
       axios.get(`${API_URL}/api/v0/users/${user}/trips`)
@@ -275,7 +277,7 @@ const tripMiddleware = (store) => (next) => (action) => {
       const user = currentUser();
 
       store.dispatch(loading(true));
-      // Endpoint add new suggestion to trip
+      // Endpoint add new activity to trip
       axios.post(`${API_URL}/api/v0/trips/${id}/activities`, {
         // props,
         title: activityTitle,
@@ -312,15 +314,15 @@ const tripMiddleware = (store) => (next) => (action) => {
         activityId,
       } = store.getState().trip;
 
-      // console.log(
-      //   activityTitle,
-      //   activityDescription,
-      //   activityStartDate,
-      //   activityEndDate,
-      //   activityCategory,
-      //   activityId,
-      // );
-
+/*       console.log(
+        activityTitle,
+        activityDescription,
+        activityStartDate,
+        activityEndDate,
+        activityCategory,
+        activityId,
+      );
+ */
       const { id } = store.getState().trip.trip;
       const user = currentUser();
       // Endpoint add new suggestion to trip
@@ -408,7 +410,7 @@ const tripMiddleware = (store) => (next) => (action) => {
       formData.append('document', json);
 
       const config = {
-        method: 'patch',
+        // method: 'patch',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -421,7 +423,7 @@ const tripMiddleware = (store) => (next) => (action) => {
         formData,
         config)
         .then((response) => {
-          // console.log(response);
+          console.log(response);
 
           store.dispatch(saveTripEdit(response.data));
           store.dispatch(toastSuccess('Modifications effectuées'));

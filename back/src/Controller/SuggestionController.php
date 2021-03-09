@@ -92,7 +92,7 @@ class SuggestionController extends AbstractController
     /**
      * @Route("api/v0/users/{idUser}/trips/{id}/suggestions/{idSuggestion}", name="api_v0_suggestions_edit", methods="PATCH")
      */
-    public function update(Request $request, $id, $idSuggestion, $idUser, SuggestionRepository $suggestionRepository, TripRepository $tripRepository, UserRepository $userRepository, ObjectNormalizer $normalizer) : Response
+    public function edit(Request $request, $id, $idSuggestion, $idUser, SuggestionRepository $suggestionRepository, TripRepository $tripRepository, UserRepository $userRepository, ObjectNormalizer $normalizer) : Response
     {
         $suggestion = $suggestionRepository->find($idSuggestion);
         $trip = $tripRepository->find($id);

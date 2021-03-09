@@ -118,7 +118,7 @@ const userMiddleware = (store) => (next) => (action) => {
       // Endpoint fetch User Profil
       axios.get(`${API_URL}/api/v0/users/${currentUser()}/profil`)
         .then((response) => {
-          // console.log(response);
+          console.log(response);
 
           store.dispatch(updateUserProfil(response.data));
         })

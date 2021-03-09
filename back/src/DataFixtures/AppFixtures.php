@@ -26,7 +26,7 @@ class AppFixtures extends Fixture
         $users = [];
         $firstName = ['Fabio', 'Gaëtan', 'Christophe', 'Olivier', 'Sébastien', 'Luc', 'Djyp', 'Guillaume', 'Cécile', 'Loris', 'Jules', 'John'];
         $lastName = ['Bigeon', 'FOF', 'Coriolis', 'Bloup', 'Croquant', 'BalMasqué', 'Milo', 'Rainbow', 'Vue', 'WP', 'Vernes', 'Smith'];
-        $pass = ['fabio', 'gaetan', 'christophe', 'olivier', 'sebastien', 'luc', 'djyp', 'guillaume', 'cecile', 'loris', 'jules', 'john'];
+        $pass = ['Fabio.123', 'Gaetan.123', 'Christophe.123', 'Olivier.123', 'Sebastien.123', 'Luc.123', 'Djyp.123', 'Guillaume.123', 'Cecile.123', 'Loris.123', 'Jules.123', 'John.123'];
         $mails = ['fabio@gmail.com', 'gaetan@gmail.com', 'christophe@gmail.com', 'olivier@gmail.com', 'sebastien@gmail.com', 'luc@gmail.com', 'djyp@gmail.com', 'guillaume@gmail.com', 'cecile@gmail.com', 'loris@gmail.com', 'jules@gmail.com', 'john@gmail.com'];
         $avatar = ['/uploads/Fabio.jpg', '/uploads/Gaetan.png','/uploads/Christophe.png','/uploads/Olivier.png','/uploads/Sebastien.jpg','/uploads/Luc.png','/uploads/Djyp.png','/uploads/Guillaume.png','/uploads/Cecile.png','/uploads/Loris.png','/uploads/Jules.jpg','/uploads/John.jpg',];
 

@@ -3,21 +3,15 @@
 namespace App\Controller\Api;
 
 use App\Entity\Trip;
-use App\Entity\User;
-use App\Form\TripType;
 use App\Repository\TripRepository;
 use App\Repository\UserRepository;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -43,12 +37,11 @@ class TripController extends AbstractController
      */
     public function new(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, ValidatorInterface $validator, UserRepository $userRepository, $id)
     {
-        $user = $userRepository->find($id);
-        $trip = new Trip;
+        $user = $userRepository->find($id); 
+        $trip = new Trip; 
         // On extrait de la requête le json reçu
 
         $jsonText = $request->get('document');
-
         $image = $request->files->get('file');
 
         try {
@@ -106,7 +99,7 @@ class TripController extends AbstractController
         
         $usersBy = $tripRepository->findAllUsersByTrip($id);
         $tripUsers = $trip->getUsers();
-        // si l'un des participant est la personne qui consulte la page $participant = 1
+        // si l'un des participants est la personne qui consulte la page $participant = 1
         foreach($tripUsers as $userParticipant){
             $i = $userParticipant->getId();      
             if($i===$userId) {
@@ -146,7 +139,7 @@ class TripController extends AbstractController
             } else {
                 return $this->json([
                     'status' => 401,
-                    'message'=>"Vous n'avez pas l'autorisation d'acceder au voyage. Contactez le modérateur du voyage"
+                    'message'=>"Vous n'avez pas l'autorisation d'acceder au voyage. Contactez son créateur."
                 ], 401);
             }
         }
@@ -177,11 +170,9 @@ class TripController extends AbstractController
             } 
         }
 
-        // si l'utilisateur fait parti des participant au voyage
+        // si l'utilisateur fait parti des participants au voyage
         if($participant >= 1){
-            $trip = $tripRepository->findWithAllData($id);
-            // On demande à Doctrine le voyage
-            
+                        
             $json = $serializer->serialize($trip, 'json', ['groups' => 'apiV0_trip']);
             
             $response = new JsonResponse($json, 200, [], true);
@@ -195,7 +186,6 @@ class TripController extends AbstractController
                 ], 401);
         }
         
-
     }
 
     /**
@@ -205,7 +195,7 @@ class TripController extends AbstractController
     {
        // On demande à Doctrine le voyage
        $trip = $tripRepository->find($id);
-        
+      dd($request);  
 
         // je récupère l'id du créateur et celui de la personne qui fait l'action
         $user = $userRepository->find($idUser);
@@ -222,10 +212,10 @@ class TripController extends AbstractController
                 $jsonText = $request->get('document');
                 $image = $request->files->get('file');
 
-/*                 $trip->setImage(
+                /* $trip->setImage(
                     new File($this->getParameter('images_directory').'/'.$trip->getImage())
-                );
- */               
+                );*/
+                
                 try {
                     // on crée une nouvelle entité Trip avec le serializer
                     $newTrip = $serializer->deserialize($jsonText, Trip::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $trip]);
@@ -317,7 +307,6 @@ class TripController extends AbstractController
      */
     public function delete(Request $request, EntityManagerInterface $em, UserRepository $userRepository, TripRepository $tripRepository, $idUser, $id)
     {
-        //$trip = $tripRepository->find($id);
         $user = $userRepository->findAllTripsByUser($idUser);
         $trip = $tripRepository->find($id);
         

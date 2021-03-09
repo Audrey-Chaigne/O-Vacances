@@ -28,11 +28,19 @@ const FieldSelect = ({
       >{labelTitle}
         <select value={value} onChange={handleChange}>
           <option defaultValue=""> Choisir une catégorie</option>
-          <option value="1">restaurant</option>
-          <option value="2">sortie nocturne</option>
-          <option value="3">sport</option>""
-          <option value="4">visite culturelle</option>
-          <option value="5">point d'eau</option>
+          <option value="1">restaurant/bar</option>
+          <option value="2">sortie culturelle</option>
+          <option value="3">visite guidée</option>""
+          <option value="4">espace vert/parc</option>
+          <option value="5">plage/piscine/lac</option>
+          <option value="6">concert/spectacle</option>""
+          <option value="7">shopping</option>
+          <option value="8">attraction touristique (village..)</option>
+          <option value="9">randonnée</option>""
+          <option value="10">sport (canoé, foot, ..)</option>
+          <option value="11">sortie nocturne</option>
+          <option value="12">parc d'attraction</option>""
+          <option value="13">Autres...</option>
         </select>
       </label>
     </div>

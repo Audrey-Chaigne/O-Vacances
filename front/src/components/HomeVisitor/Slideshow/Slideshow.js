@@ -71,9 +71,7 @@ const Slideshow = () => {
           <h1 className="intro-title">
             devient facile.
           </h1>
-          <p className="intro-content">Partir seul ou à plusieurs, gérer ses activités, échanger entre amis avec O'Vacances. <br />
-            Tomber amoureux du voyage à nouveau.
-          </p>
+          <p className="intro-content">Partir seul ou à plusieurs, gérer ses activités, échanger en famille ou entre amis avec O'Vacances.</p>
         </div>
       </section>
 
