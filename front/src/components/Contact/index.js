@@ -19,13 +19,13 @@ const Contact = () => (
         Vous souhaitez nous faire part d'une remarque ? Vous avez besoin d'un renseignement ?
       </h3>
       <p>
-        Vous pouvez joindre l'un des membres de l'équipe sur la page <Link to="/equipe">Qui sommes nous ?</Link>
+        Vous pouvez joindre l'un des membres de l'équipe sur la page de <Link to="/equipe">l'équipe</Link>
       </p>
       <p>Nous nous ferons un plaisir de vous répondre via Linkedin,
         en attendant de vous proposer un beau formulaire de contact.
       </p>
     </div>
-    <div className="contact-form">
+    {/* <div className="contact-form">
       <form action="/page-contact" method="post">
         <div>
           <input type="text" id="name" name="visitor-name" placeholder="Nom" />
@@ -40,7 +40,7 @@ const Contact = () => (
           Envoyer le message
         </Button>
       </form>
-    </div>
+    </div> */}
   </main>
 );
 

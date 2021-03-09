@@ -11,8 +11,12 @@
       color: $blackColor;
       display: block;
       margin-bottom: 0.25rem;
+      span {
+        font-size: 0.7rem;
+        font-weight: lighter;
+      }
     }
-  
+    
     &-input {
       width: 100%;
       height: 2.5rem;

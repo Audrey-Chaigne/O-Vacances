@@ -6,10 +6,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Calendar,
-  MapPin,
-  HelpCircle,
-  XCircle,
+  Calendar, MapPin, HelpCircle, XCircle,
 } from 'react-feather';
 import Button from 'src/components/elements/Button';
 // React Date Range
@@ -121,7 +118,7 @@ const Trip = ({
   ]);
 
   useEffect(() => {
-    if (userDisponibilities.length !== 0) {
+    if (userDisponibilities) {
       setState([
         {
           startDate: new Date(userDisponibilities.startDate),

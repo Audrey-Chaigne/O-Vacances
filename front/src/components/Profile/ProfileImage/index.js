@@ -27,15 +27,15 @@ const ProfileImage = ({
 
   const [image, setImage] = useState({
     file: '',
-    imagePreviewUrl: avatar.length !== '' ? avatar : '',
+    imagePreviewUrl: avatar !== null ? avatar : '',
   });
-  const { imagePreviewUrl } = image;
+  const { imagePreviewUrl } = image; 
 
   const handleChange = (evt) => {
     // Check if filesize < 3 Mo
     const FileSize = evt.target.files[0].size / 1024 / 1024; // in MB
     if (FileSize > 3) {
-      alert('L\'image doti faire moins de 3 Mo !');
+      alert('L\'image doit faire moins de 3 Mo !');
       document.querySelector('#profile-field-input.profile-image').value = null;
     }
     else {
@@ -57,7 +57,7 @@ const ProfileImage = ({
 
   return (
     <div className="profile-head-img">
-      { avatar ?  (<img className="profile-head-img-picture" src={API_URL + avatar} alt={firstname} />) : (<AvatarDefault className="profile-head-img-picture" />)}
+      { avatar !== null ? (<img className="profile-head-img-picture" src={API_URL + avatar} alt={firstname} />) : (<AvatarDefault className="profile-head-img-picture" />)}
       <Button color="primary" onClick={openModal}>Modifier la photo</Button>
 
       <Modal
@@ -107,8 +107,8 @@ ProfileImage.propTypes = {
   firstname: PropTypes.string.isRequired,
   onChangeImage: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  handleEditUser: PropTypes.func.isRequired,
-  handleEditUserImage: PropTypes.func.isRequired,
+/*   handleEditUser: PropTypes.func.isRequired,
+ */  handleEditUserImage: PropTypes.func.isRequired,
 };
 
 ProfileImage.defaultProps = {

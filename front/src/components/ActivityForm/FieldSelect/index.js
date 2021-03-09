@@ -34,11 +34,19 @@ const FieldSelect = ({
           required={required}
         >
           <option selected hidden> Choisir une catégorie</option>
-          <option value="1">Restaurant</option>
-          <option value="2">Sortie nocturne</option>
-          <option value="3">Sport</option>
-          <option value="4">Visite culturelle</option>
-          <option value="5">Point d'eau</option>
+          <option value="1">restaurant/bar</option>
+          <option value="2">sortie culturelle</option>
+          <option value="3">visite guidée</option>""
+          <option value="4">espace vert/parc</option>
+          <option value="5">plage/piscine/lac</option>
+          <option value="6">concert/spectacle</option>""
+          <option value="7">shopping</option>
+          <option value="8">attraction touristique (village..)</option>
+          <option value="9">randonnée</option>""
+          <option value="10">sport (canoé, foot, ..)</option>
+          <option value="11">sortie nocturne</option>
+          <option value="12">parc d'attraction</option>""
+          <option value="13">Autres...</option>
         </select>
       </label>
     </div>

@@ -46,6 +46,7 @@ const Login = ({
                 name="password"
                 type="password"
                 placeholder="Mot de passe"
+                note="8 à 24 caractères, au moins 1 majuscule, 1 minuscule et 1 caractère spécial (#@%*.-)"
                 onChange={changeField}
                 value={password}
                 required
@@ -61,7 +62,7 @@ const Login = ({
             </form>
             <div>
               <div className="login-layout">
-                <p>J'ai oublié mon mot de passe</p>
+                {/* <p>J'ai oublié mon mot de passe</p> */}
                 <hr />
                 <p>
                   Pas encore de compte ? <Link to="/signin">Inscription</Link>

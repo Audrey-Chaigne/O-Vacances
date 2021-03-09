@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/api/v0/categories", name="api_v0_users_categories_list", methods="GET")
+     * @Route("/api/v0/categories", name="api_v0_categories_list", methods="GET")
      */
     public function list(CategoryRepository $categoryRepository, SerializerInterface $serializer)
     {
