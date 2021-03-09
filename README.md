@@ -1,55 +1,45 @@
-# O'Vacances - Back
+# :sunflower: New-OVacances :sunflower:
 
-## pour installer symfony
-Installer Symfony CLI via la commande
-```
-wget https://get.symfony.com/cli/installer -O - | bash
-```
-Puis rendre l'installation globale
-```
-mv /home/etudiant/.symfony/bin/symfony /usr/local/bin/symfony
-```
+## :woman_mechanic: :safety_vest: Avertissement 
+**Comme je travaille encore sur ce projet, il peut y avoir des bugs ou du code à nettoyer... :wink:**
 
-Dans le dossier `o-vacances/back`, installer les dépendances via le terminal
-```
-composer install
-```
+## Contexte du projet :pencil:
 
-## pour avoir la BDD penser à créer le fichier .env.local à la racine du dossier `back` en modifiant les informations user - password et db_name de la commande suivante, correspondant à votre accès adminer/PhpMyAdmin
-### Fichier .env.local
-`DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7`
+Lors de ma formation chez O'clock, nous avons eu l'occasion de proposer des idées de projets personnels pour les développer pendant le dernier mois de formation. Nous partions avec seulement une idée et nous devions, au bout de 4 semaines, présenter un projet qui fonctionne. Nous l'avons donc concu de A à Z !
 
-## Puis dans le terminal
+## Objectifs du projet :earth_africa:
 
-### Création de la BDD: 
-```
-php bin/console doctrine:database:create
-```
+C'est une application d'aide à l'organisation de voyage en groupe.
+Cette application permet de centraliser des informations utiles au voyage (dates, lieu, activités...) tout
+en les laissant disponibles et modifiables par ses participants. Elle leur permet aussi de faire des
+propositions d’activités ou de noter des suggestions.
 
-### Conception des tables:
-```
-php bin/console doctrine:migrations:migrate
-```
+Toutes ces fonctionnalités se trouvent dans un espace sécurisé, accessible seulement par les participants au
+voyage.
 
-### Si la migration ne fonctionne pas faire les démarches suivantes
-Dans le fichier:
-    `vendor\doctrine\migrations\lib\Doctrine\Migrations\Metadata\Storage\TableMetadataStorage.php`
-    
-**Commenter les lignes 191->195**
+## Spécifications techniques :hammer_and_wrench:
 
-## Faire la migration:
-```
-php bin/console doctrine:migrations:migrate
-```
-Puis decommenter les lignes précédentes (191->195)
+#### Front
+Cette partie est réalisée avec la librairie React et avec Redux pour la gestion des states.
 
-### Chargements des fixtures 
-```
-php bin/console doctrine:fixtures:load
-```
+#### Back
+Nous avons utilisé le framework Symfony avec Doctrine ORM et des bundles (Lexik-jwt token, fixture..)
 
-### Lancement du serveur
-Toujours dans le dossier "back":
-```
-symfony server:start
-```
+## Equipe du projet :nerd_face:
+
+Nous étions une équipe de 5 personnes, tous à distance (télétravail).
+
+Pour les besoins du projet dans le cadre de la formation, nous avions des roles attribués.
+
+**en Front**
+* Cécilia C., dev front et scrum master
+* Quentin B., dev front et lead dev front
+
+**en back**
+* Loic C., dev back et lead dev back
+* Alexandre Q., dev back et git master
+* Moi-même (Audrey Chaigne), dev back et product owner
+
+## Présentation à la fin des 4 semaines :clapper:
+A la fin des 4 semaines de projet, nous avons fait une présentation de notre application en direct sur youtube. Celle-ci est disponible sur [ici](https://youtu.be/n_Jo3Pcf87c?t=2634)
+
