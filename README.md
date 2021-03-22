@@ -1,6 +1,6 @@
 # :sunflower: New-OVacances :sunflower:
 
-## :woman_mechanic: :safety_vest: Avertissement 
+## Avertissement :woman_mechanic: :safety_vest:
 **Comme je travaille encore sur ce projet, il peut y avoir des bugs ou du code à nettoyer... :wink:**
 
 ## Contexte du projet :pencil:
@@ -27,7 +27,9 @@ Nous avons utilisé le framework Symfony avec Doctrine ORM et des bundles (Lexik
 
 ## Equipe du projet :nerd_face:
 
-Nous étions une équipe de 5 personnes, tous à distance (télétravail).
+Nous étions une équipe de 5 personnes, tous à distance (télétravail). 
+
+Nous avons utilisé la méthode scrum pour notre organisation, avec des sprints de 1 semaine.
 
 Pour les besoins du projet dans le cadre de la formation, nous avions des roles attribués.
 
@@ -41,5 +43,5 @@ Pour les besoins du projet dans le cadre de la formation, nous avions des roles 
 * Moi-même (Audrey Chaigne), dev back et product owner
 
 ## Présentation à la fin des 4 semaines :clapper:
-A la fin des 4 semaines de projet, nous avons fait une présentation de notre application en direct sur youtube. Celle-ci est disponible sur [ici](https://youtu.be/n_Jo3Pcf87c?t=2634)
+A la fin des 4 semaines de projet, nous avons fait une présentation de notre application en direct sur youtube. Celle-ci est disponible [ici](https://youtu.be/n_Jo3Pcf87c?t=2634)
 
